@@ -65,24 +65,24 @@ class AstrologyController extends BaseController
 
         // $lalKitabReport = '';
 
-        // $type = 'remedies';
-        // $lalLitabDataArray = AstrologyHelper::getLalKitabData($user, $type);
-        // $LalKitab_report = json_decode($lalLitabDataArray);
-        // if ($LalKitab_report->status == 200) {
+        $type = 'remedies';
+        $lalLitabDataArray = AstrologyHelper::getLalKitabData($user, $type);
+        $LalKitab_report = json_decode($lalLitabDataArray);
+        if ($LalKitab_report->status == 200) {
 
-        //     if ($LalKitab_report->response) {
+            if ($LalKitab_report->response) {
 
-        //         $lalKitabReport = [];
+                $lalKitabReport = [];
 
-        //         foreach ($LalKitab_report->response as $key => $item) {
-        //             $lalKitabReport[] = [
-        //                 'title' => $item->planet . ' ( घर :- ' . $item->house . ' )',
-        //                 'text' => $item->effects,
-        //                 'remedies' => isset($item->remedies) ? $item->remedies : [],
-        //             ];
-        //         }
-        //     }
-        // }
+                foreach ($LalKitab_report->response as $key => $item) {
+                    $lalKitabReport[] = [
+                        'title' => $item->planet . ' ( घर :- ' . $item->house . ' )',
+                        'text' => $item->effects,
+                        'remedies' => isset($item->remedies) ? $item->remedies : [],
+                    ];
+                }
+            }
+        }
 
         $data = [
             'prediction' => $lalKitabReport,
